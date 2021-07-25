@@ -70,16 +70,14 @@ const leerInput= async(message)=> {
     return desc;
 }
 
-const listadoTareasBorrar= async(tareas= [])=> {
-    //Vamos a generar una lista dinamica con las tareas que estan actualemnet en la base de datos
-    const choices= tareas.map((tarea, index)=> {
+const listarLugares= async(lugares= [])=> {
+    const choices= lugares.map((lugar, index)=> {
         const idx= `${index + 1}`.green;
         return {
-            value: tarea.id,
-            name: `${idx} ${tarea.desc}`,
+            value: lugar.id,
+            name: `${idx} ${lugar.nombre}`,
         }
     });
-    //Unshift es un metodo para ingresar elementos a un array en la primer posicion
     choices.unshift({
         value: 0,
         name: '0.'.green + 'Cancelar'
@@ -89,7 +87,7 @@ const listadoTareasBorrar= async(tareas= [])=> {
         {
             type: 'list',
             name: 'id',//Nombre con el identificaremos el dato que el usuario ha ingresado
-            message: 'Borrar',
+            message: 'Seleccione Lugar',
             choices: choices,
         }
     ]
@@ -137,7 +135,7 @@ module.exports= {
     inquirerMenu,
     pausa,
     leerInput,
-    listadoTareasBorrar,
+    listarLugares,
     confirmar,
     mostrarListadoCheckList,
 }
