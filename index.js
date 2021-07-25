@@ -27,14 +27,17 @@ const main= async()=> {
                 const id= await listarLugares(lugares);
                 const lugarSeleccionado= lugares.find((lugar)=> lugar.id === id);
                 //Datos del clima
+                const clima= await busquedas.climaLugar(lugarSeleccionado.lat, lugarSeleccionado.lng);
                 //Mostrar resultados
+                console.clear();
                 console.log("\nInformacion de la ciudad\n".green);
-                console.log("Ciudad: ", lugarSeleccionado.nombre);
-                console.log("Latitud: ", lugarSeleccionado.lng);
-                console.log("Longitud: ", lugarSeleccionado.lat);
-                console.log("Temperatura: ", );
-                console.log("Temperatura maxima: ", );
-                console.log("Temperatura minima: ", );
+                console.log("Ciudad: ", lugarSeleccionado.nombre.green);
+                console.log("Latitud: ", String(lugarSeleccionado.lat).green);
+                console.log("Longitud: ", String(lugarSeleccionado.lng).green);
+                console.log("Temperatura: ", String(clima.temp).green);
+                console.log("Temperatura maxima: ", String(clima.max).green);
+                console.log("Temperatura minima: ", String(clima.min).green);
+                console.log("Como esta el clima: ", clima.desc.green);
                 break;
             
             case 2:
