@@ -6,7 +6,7 @@ class Busquedas {
     dbPath= './db/database.json';
 
     constructor(){
-        //TODO: leer db si existe
+        this.leerBD();
     }
 
     get paramsMapbox(){
@@ -98,7 +98,12 @@ class Busquedas {
     }
 
     leerBD(){
-
+        if(!fs.existsSync(this.dbPath)){
+            return
+        }
+        const info= fs.readFileSync(this.dbPath, {encoding: 'utf-8'});
+        const data= JSON.parse(info);
+        this.historial= data.historial;
     }
 }
 
