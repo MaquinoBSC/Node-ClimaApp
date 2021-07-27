@@ -9,6 +9,15 @@ class Busquedas {
         this.leerBD();
     }
 
+    get historialCapitalizado(){
+        return this.historial.map((registro)=> {
+            let palabras= registro.split(' ');
+            palabras= palabras.map((palabra)=> palabra[0].toUpperCase() + palabra.substring(1));
+
+            return palabras.join(' ');
+        })
+    }
+
     get paramsMapbox(){
         return {
             "access_token": process.env.MAPBOX_KEY,
@@ -79,6 +88,7 @@ class Busquedas {
         if(this.historial.includes(lugar.toLowerCase())){
             return;
         }
+        this.historial= this.historial.splice(0, 5);
         this.historial.unshift(lugar.toLowerCase());
 
         //Grabar en DB
